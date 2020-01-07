@@ -15,10 +15,20 @@ void AddMenus(HWND);
 
 void AddControls(HWND hWnd);
 
+//input HWND
 HWND tubeArea;
 HWND tubeLen;
 HWND boxVol;
 HWND boardThickness;
+
+//output HWND
+HWND frontPanel;
+HWND backPanel;
+HWND sidePanel;
+HWND bottomPanel;
+HWND topPanel;
+HWND tubetopPanel;
+HWND tubesidePanel;
 
 
 int main(HINSTANCE hInst, HINSTANCE, PWSTR pCmdLine, int nCmdShow)
@@ -51,13 +61,15 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
 {
 	switch (msg)
 	{
-	case WM_COMMAND: //any of the buttons were clicked
+	case WM_COMMAND:			//any of the buttons were clicked
 		switch (wp) {
-		case FILE_MENU_NEW: //when the new button is pressed
+		case FILE_MENU_NEW:		//when the new button is pressed
 			break;
-		case FILE_MENU_SAVE: //when the save button is pressed
+		case FILE_MENU_SAVE:	//when the save button is pressed
 			break;
-		case FILE_MENU_OPEN: //when the open button is pressed
+		case FILE_MENU_OPEN:	//when the open button is pressed
+			break;
+		case SUBMIT:			//when the submit button is pressed
 			break;
 		}
 		break;
@@ -110,9 +122,40 @@ void AddControls(HWND hWnd) {
 		204, 2 * (30 + spacing), 100, 30, hWnd, NULL, NULL, NULL);
 	boardThickness = CreateWindowW(L"edit", L"...", WS_VISIBLE | WS_CHILD | SS_LEFT | WS_BORDER | ES_MULTILINE | ES_AUTOVSCROLL, 
 		204, 3 * (30 + spacing), 100, 30, hWnd, NULL, NULL, NULL);
+
 	//SUBMIT BUTTON
 	CreateWindowW(L"button", L"SUBMIT", WS_VISIBLE | WS_CHILD, 0, 4 * (30 + spacing), 100, 30, hWnd, (HMENU)SUBMIT,
 		NULL, NULL);//class name isn't case sensitive
 
+	//Output (statics)
+	int subButtonSpace = 2;
+	//Labels
+	CreateWindowW(L"static", L"Front Panel Dimensions    :", WS_VISIBLE | WS_CHILD | SS_LEFT, 2, 5 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
 
+	CreateWindowW(L"static", L"Back Panel Dimensions    :", WS_VISIBLE | WS_CHILD | SS_LEFT, 2, 6 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+
+	CreateWindowW(L"static", L"Side Panel Dimensions     :", WS_VISIBLE | WS_CHILD | SS_LEFT, 2, 7 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+
+	CreateWindowW(L"static", L"Bottom Panel Dimensions :", WS_VISIBLE | WS_CHILD | SS_LEFT, 2, 8 * (30 + spacing), 200, 30, hWnd, NULL, NULL, NULL);
+
+	CreateWindowW(L"static", L"Top Panel Dimensions      :", WS_VISIBLE | WS_CHILD | SS_LEFT, 2, 9 * (30 + spacing), 200, 30, hWnd, NULL, NULL, NULL);
+
+	CreateWindowW(L"static", L"Tube Top Panel Dimensions :", WS_VISIBLE | WS_CHILD | SS_LEFT, 2, 10 * (30 + spacing), 200, 30, hWnd, NULL, NULL, NULL);
+
+	CreateWindowW(L"static", L"Tube Side Panel Dimensions:", WS_VISIBLE | WS_CHILD | SS_LEFT, 2, 11 * (30 + spacing), 200, 30, hWnd, NULL, NULL, NULL);
+
+	//Output
+	frontPanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 5 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+
+	backPanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 6 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+
+	sidePanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 7 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+
+	bottomPanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 8 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+
+	topPanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 9 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+
+	tubetopPanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 10 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+
+	tubesidePanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 11 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
 }
