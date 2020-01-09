@@ -1,2 +1,41 @@
 ﻿  VentedSpeakerBox Calculator.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2355,23): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2355,23): warning C4244:         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2355,23): warning C4244:         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2355,23): warning C4244:             _Elem=char
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2355,23): warning C4244:         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2366): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(_Iter,const _Iter,std::input_iterator_tag)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2366): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2366): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2366): message :             _Iter=wchar_t *
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2366): message :         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2366): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(_Iter,const _Iter,std::input_iterator_tag)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2366): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2366): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2366): message :             _Iter=wchar_t *
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2366): message :         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2346): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(const _Iter,const _Iter,std::forward_iterator_tag)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2346): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2346): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2346): message :             _Iter=wchar_t *
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2346): message :         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2346): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(const _Iter,const _Iter,std::forward_iterator_tag)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2346): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2346): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2346): message :             _Iter=wchar_t *
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(2346): message :         ]
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,void>(_Iter,_Iter,const _Alloc &)' being compiled
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message :         with
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message :         [
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message :             _Elem=wchar_t,
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message :             _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message :             _Alloc=std::allocator<char>
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message :         ]
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,void>(_Iter,_Iter,const _Alloc &)' being compiled
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message :         with
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message :         [
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message :             _Elem=wchar_t,
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message :             _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message :             _Alloc=std::allocator<char>
+C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator\VentedSpeakerBox Calculator.cpp(83): message :         ]
   VentedSpeakerBox Calculator.vcxproj -> C:\Users\Graham Donaldson\Desktop\GITHUB\VentedSpeakerBox Calculator\x64\Debug\VentedSpeakerBox Calculator.exe

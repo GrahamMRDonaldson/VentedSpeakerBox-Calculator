@@ -3,6 +3,49 @@
 #endif 
 
 #include <windows.h>
+#include <iostream>		//std::cout, std::endl
+#include <string>		//std::wstring, std::to_wstring
+
+struct dimension {
+	float x = 0;
+	float y = 0;
+	void print() {
+		std::cout << "(" << x << ", " << y << ")" << std::endl;
+	}
+	std::wstring val() {
+		std::wstring a = L"(";
+		a += std::to_wstring(x);
+		a += std::wstring(L", ");
+		a+= std::to_wstring(y);
+		a += std::wstring(L")");
+		return a;
+	}
+};
+
+class panels {
+public:
+	dimension frontPanel;
+	dimension backPanel;
+	dimension sidePanel;
+	dimension bottomPanel;
+	dimension topPanel;
+	dimension tubetopPanel;
+	dimension tubesidePanel;
+
+	panels(dimension frontPanel, dimension backPanel, dimension sidePanel,
+		dimension bottomPanel, dimension topPanel, dimension tubetopPanel,
+		dimension tubesidePanel) {
+		this->frontPanel = frontPanel;
+		this->backPanel = backPanel;
+		this->sidePanel = sidePanel;
+		this->backPanel = bottomPanel;
+		this->topPanel = topPanel;
+		this->tubetopPanel = tubetopPanel;
+		this->tubesidePanel = tubesidePanel;
+	}
+
+	panels() {} 
+};
 
 #define FILE_MENU_NEW 1
 #define FILE_MENU_OPEN 2
@@ -16,20 +59,48 @@ void AddMenus(HWND);
 void AddControls(HWND hWnd);
 
 //input HWND
-HWND tubeArea;
-HWND tubeLen;
-HWND boxVol;
-HWND boardThickness;
+HWND tubeArea_HWND;
+HWND tubeLen_HWND;
+HWND boxVol_HWND;
+HWND boardThickness_HWND;
 
 //output HWND
-HWND frontPanel;
-HWND backPanel;
-HWND sidePanel;
-HWND bottomPanel;
-HWND topPanel;
-HWND tubetopPanel;
-HWND tubesidePanel;
+HWND frontPanel_HWND;
+HWND backPanel_HWND;
+HWND sidePanel_HWND;
+HWND bottomPanel_HWND;
+HWND topPanel_HWND;
+HWND tubetopPanel_HWND;
+HWND tubesidePanel_HWND;
 
+float to_float(std::string str) {
+	std::string::size_type sz;
+	return (float)(std::stof(str, &sz));
+}
+
+std::string to_str(wchar_t wstr[100]) {
+	std::wstring ws(wstr);
+	std::string val(ws.begin(), ws.end());
+	return val;
+}
+
+panels do_calc(std::string wtubeArea, std::string wtubeLen, std::string wboxVol, std::string wboardThickness) {
+	//redefine parsed string as floats
+	float tubeArea = to_float(wtubeArea);
+	float tubeLen = to_float(wtubeLen);
+	float boxVol = to_float(wboxVol);
+	float boardThickness = to_float(wboardThickness);
+
+	//calculations
+	float tube_width = tubeArea / boardThickness;
+	float chunk_height = 2 * boardThickness;
+
+	//box_vol + (chunk_height * (tube_len-board_thickness) * (tube_width + x)) - (tube_width + x)**3
+	//a + (2b(c-b)((d/b)+x))) - ((d/b)*x)^3
+	//TODO 
+	//figure out how to solve this equation, then put it into panels form
+	return panels();
+}
 
 int main(HINSTANCE hInst, HINSTANCE, PWSTR pCmdLine, int nCmdShow)
 {
@@ -70,6 +141,27 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
 		case FILE_MENU_OPEN:	//when the open button is pressed
 			break;
 		case SUBMIT:			//when the submit button is pressed
+			//gets the values of the users inputs
+			wchar_t tubeArea[100];
+			GetWindowText(tubeArea_HWND, tubeArea, 100);
+			wchar_t tubeLen[100];
+			GetWindowText(tubeLen_HWND, tubeLen, 100);
+			wchar_t boxVol[100];
+			GetWindowText(boxVol_HWND, boxVol, 100);
+			wchar_t boardThickness[100];
+			GetWindowText(boardThickness_HWND, boardThickness, 100);
+
+			//calculating the values
+			panels calc_dimensions = do_calc(to_str(tubeArea), to_str(tubeLen), to_str(boxVol), to_str(boardThickness));
+
+			//setting the output windows to the correct ones
+			SetWindowTextW(frontPanel_HWND, calc_dimensions.frontPanel.val().c_str());
+			SetWindowTextW(backPanel_HWND, calc_dimensions.backPanel.val().c_str());
+			SetWindowTextW(sidePanel_HWND, calc_dimensions.sidePanel.val().c_str());
+			SetWindowTextW(bottomPanel_HWND, calc_dimensions.bottomPanel.val().c_str());
+			SetWindowTextW(topPanel_HWND, calc_dimensions.topPanel.val().c_str());
+			SetWindowTextW(tubetopPanel_HWND, calc_dimensions.tubetopPanel.val().c_str());
+			SetWindowTextW(tubesidePanel_HWND, calc_dimensions.tubesidePanel.val().c_str());
 			break;
 		}
 		break;
@@ -114,13 +206,13 @@ void AddControls(HWND hWnd) {
 
 	//Inputs (edits)
 	//USER INPUT
-	tubeArea = CreateWindowW(L"edit", L"...", WS_VISIBLE | WS_CHILD | SS_LEFT | WS_BORDER | ES_MULTILINE | ES_AUTOVSCROLL, 
+	tubeArea_HWND = CreateWindowW(L"edit", L"...", WS_VISIBLE | WS_CHILD | SS_LEFT | WS_BORDER | ES_MULTILINE | ES_AUTOVSCROLL,
 		204, 0, 100, 30, hWnd, NULL, NULL, NULL); 
-	tubeLen = CreateWindowW(L"edit", L"...", WS_VISIBLE | WS_CHILD | SS_LEFT | WS_BORDER | ES_MULTILINE | ES_AUTOVSCROLL, 
+	tubeLen_HWND = CreateWindowW(L"edit", L"...", WS_VISIBLE | WS_CHILD | SS_LEFT | WS_BORDER | ES_MULTILINE | ES_AUTOVSCROLL,
 		204, 30 + spacing, 100, 30, hWnd, NULL, NULL, NULL);
-	boxVol = CreateWindowW(L"edit", L"...", WS_VISIBLE | WS_CHILD | SS_LEFT | WS_BORDER | ES_MULTILINE | ES_AUTOVSCROLL, 
+	boxVol_HWND = CreateWindowW(L"edit", L"...", WS_VISIBLE | WS_CHILD | SS_LEFT | WS_BORDER | ES_MULTILINE | ES_AUTOVSCROLL,
 		204, 2 * (30 + spacing), 100, 30, hWnd, NULL, NULL, NULL);
-	boardThickness = CreateWindowW(L"edit", L"...", WS_VISIBLE | WS_CHILD | SS_LEFT | WS_BORDER | ES_MULTILINE | ES_AUTOVSCROLL, 
+	boardThickness_HWND = CreateWindowW(L"edit", L"...", WS_VISIBLE | WS_CHILD | SS_LEFT | WS_BORDER | ES_MULTILINE | ES_AUTOVSCROLL,
 		204, 3 * (30 + spacing), 100, 30, hWnd, NULL, NULL, NULL);
 
 	//SUBMIT BUTTON
@@ -145,17 +237,17 @@ void AddControls(HWND hWnd) {
 	CreateWindowW(L"static", L"Tube Side Panel Dimensions:", WS_VISIBLE | WS_CHILD | SS_LEFT, 2, 11 * (30 + spacing), 200, 30, hWnd, NULL, NULL, NULL);
 
 	//Output
-	frontPanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 5 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+	frontPanel_HWND = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 5 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
 
-	backPanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 6 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+	backPanel_HWND = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 6 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
 
-	sidePanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 7 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+	sidePanel_HWND = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 7 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
 
-	bottomPanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 8 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+	bottomPanel_HWND = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 8 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
 
-	topPanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 9 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+	topPanel_HWND = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 9 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
 
-	tubetopPanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 10 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+	tubetopPanel_HWND = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 10 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
 
-	tubesidePanel = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 11 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
+	tubesidePanel_HWND = CreateWindowW(L"static", L"<?>", WS_VISIBLE | WS_CHILD | SS_LEFT, 204, 11 * (30 + spacing) + subButtonSpace, 200, 30, hWnd, NULL, NULL, NULL);
 }
