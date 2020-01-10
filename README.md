@@ -8,9 +8,9 @@ NOTE:
 This is a work in progress
 
 Current Features:
--INPUT dimensions GUI
--FILE new/open/save GUI
+- INPUT dimensions GUI
+- FILE new/open/save GUI
 
 Future Features:
--OUTPUT dimensions Display
--FILE new/open/save feature
+- OUTPUT dimensions Display
+- FILE new/open/save feature
